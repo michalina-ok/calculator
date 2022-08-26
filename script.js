@@ -1,48 +1,53 @@
+//defining the variables
 const firstNumber = document.querySelector("#firstnumber");
 const secondNumber = document.querySelector("#secondnumber");
 const operator = document.querySelector("#operator");
 let selector = operator.options[operator.selectedIndex].text;
+let newSelector;
 const calculateButton = document.querySelector("#calculate");
-const resultList = document.querySelector('#results');
+const resultList = document.querySelector("#results");
 const lastResult = resultList.lastElementChild;
-
+let li = document.querySelectorAll('li');
+let result;
+const child4 = document.querySelector('#child4')
 
 console.log(firstNumber.value);
 console.log(secondNumber.value);
 
-buttonClicked();
+//button clicked
+checkOperator();
+clearResult();
+
+function checkOperator() {
+    operator.addEventListener("change", (event) => {
+      newSelector = event.target.value;
+      console.log(newSelector);
+    });
+    buttonClicked();
+  }
 
 function buttonClicked() {
   calculateButton.addEventListener("click", calculate);
 }
 
-console.log(selector);
 
 function calculate() {
-  if (selector === "+") {
+  if (newSelector === "add") {
     let result = parseFloat(firstNumber.value) + parseFloat(secondNumber.value);
     lastResult.textContent = result;
-  }
-
-  else if (selector === "-") {
+  } else if (newSelector === "sub") {
     let result = parseFloat(firstNumber.value) - parseFloat(secondNumber.value);
     lastResult.textContent = result;
-  }
-
-  else if (selector === "*") {
+  } else if (newSelector === "mul") {
     let result = parseFloat(firstNumber.value) * parseFloat(secondNumber.value);
     lastResult.textContent = result;
-  }
-
-  else if (selector === "/") {
+  } else if (newSelector === "div") {
     let result = parseFloat(firstNumber.value) / parseFloat(secondNumber.value);
     lastResult.textContent = result;
   }
 }
 
-function rounding() {}
-
-function writeResult() {
+function rounding() {
 
 }
 
@@ -50,6 +55,11 @@ function clearResult() {
   document.querySelector("#clear").addEventListener("click", clickedClear);
 
   function clickedClear() {
-    console.log("clear");
+    child1.textContent = '0';
+    child2.textContent = '0';
+    child3.textContent = '0';
+    child4.textContent = '0';
+    console.log(li)
+
   }
 }
